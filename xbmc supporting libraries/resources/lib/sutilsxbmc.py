@@ -101,3 +101,23 @@ def refeshCurrentWindow():
 
 def refreshCurrentListing():
     xbmc.executebuiltin("Container.Refresh");
+    
+def showTextView(header = "", text = ""):
+    window = TextWindow();
+    window.header = header;
+    window.body = text;
+    window.doModal();
+
+    
+class TextWindow(WindowXMLDialog):
+
+    def __new__(cls):
+        return super(TextWindow, cls).__new__(cls, "DialogTextViewer.xml", "");
+
+    def onInit(self):
+        self.getControl(1).setLabel(self.header if self.header else "");
+        self.getControl(5).setText(self.body if self.body else "");
+        
+    def onAction(self, action):        
+        if action == 10 or action == 92 or action == 9:
+            self.close();
