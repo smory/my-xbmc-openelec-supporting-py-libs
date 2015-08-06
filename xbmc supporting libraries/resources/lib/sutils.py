@@ -243,3 +243,8 @@ def hashSHA256(text):
 
 def hashSHA256Hex(text):
     return binascii.hexlify(hashSHA256(text));
+
+def unixTimeStamp(inputDateTime):
+    start = datetime(year=1970,month=1,day=1);
+    diff = input - start;
+    return int(diff.total_seconds());
